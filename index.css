@@ -1,0 +1,9 @@
+#background{
+	height:600px;
+	width: 300px;
+	background-size:100%;
+	background-image: url("./Skydive_Background.jpg");
+	/*background-position: center;*/
+	text-align: center;
+	color:#ffffff;
+}

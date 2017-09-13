@@ -20,7 +20,7 @@ gulp.task('bundle', function() {
 		.pipe(gulp.dest('./dist'));// save into /dist folder
 });
 
-gulp.task('watch', function(){
+	gulp.task('watch', function(){
 	gulp.watch(javascriptFiles, ['bundle']);
 });
 
