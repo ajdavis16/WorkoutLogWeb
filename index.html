@@ -23,13 +23,13 @@
 
 
   <ul class="nav nav-tabs">
-    <li><a href="#update-log" data-toggle="tab" class="disabled" type="hidden"></a>
     <li><a href="#home" id="loginout" class="disabled" data-toggle="tab">Login</a>
       <!--logout too -->
     </li>
     <li><a href="#define" class="disabled" data-toggle="tab">Define</a></li>
     <li><a href="#log" class="disabled" data-toggle="tab">Log</a></li>
     <li><a href="#history" class="disabled" data-toggle="tab">View History</a></li>
+    <a href="#update-log" data-toggle="tab" class="disabled" type="hidden"></a>
 
   </ul>
 
@@ -60,6 +60,7 @@
           <button id="def-save" class="btn btn-primary">Save</button>
       </div>
 
+    
       <div class="tab-pane fade" id="log">
         <h2>log!</h2>
         <label>Result</label>
@@ -71,13 +72,14 @@
         <textarea class="form-control" id="log-description" rows="3"></textarea>
         <button id="log-save" class="btn btn-primary">Save</button>
       </div>
-      
+
+      <!--UPDATING A WORKOUT SECTION-->
       <div class="tab-pane fade" id="update-log">
         <h2>Log Update</h2>
         <label>Result</label>
         <input type="hidden" class="form-control" id="update-id" />
         <input type="text" class="form-control" id="update-result" />
-        <label>Workout Select;</label>
+        <label>Workout Select:</label>
         <select class="form-control" id="update-definition">
         </select>
         <label>notes</label>
@@ -86,8 +88,7 @@
         <button id="log-update" class="btn btn-primary">Save</button>
       </div>
 
-
-
+      
       <div class="tab-pane fade" id="history">
         <h2>History</h2>
         <ul class="list-group" id="history-list">
@@ -142,14 +143,12 @@
     <script src="./bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- <script type="text/javascript" src="./app.js"></script> -->
-    <!-- <script src="./user/auth.js"></script>  -->
-    <!-- <script src="./workouts/define.js"></script> -->
-    <!-- <script src="./workouts/log.js"></script> -->
-<!-- 
+    <script src="./app.js"></script>
+    <script src="./user/auth.js"></script> 
     <script src="./workouts/define.js"></script>
+    <script src="./workouts/log.js"></script>
+<!--
     <script src="./dist/bundle.js"></script> -->
-    <script src="./dist/bundle.js"></script>
 </body>
 
 </html>

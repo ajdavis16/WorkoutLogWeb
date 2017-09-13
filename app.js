@@ -1,6 +1,7 @@
 $(function(){
+
 var WorkoutLog = (function($, undefined) {
-      var API_BASE =  "https://andrew-workoutlog-api.herokuapp.com/";
+      var API_BASE =  "http://localhost:3000/api/";
       var userDefinitions = [];
 
       var setAuthHeader = function(sessionToken) {
@@ -39,10 +40,8 @@ var WorkoutLog = (function($, undefined) {
       }
 
       if (target === "#update-log") {
-         WorkoutLog.log.setDefinitions();
+        WorkoutLog.log.setDefinitions();
       }
-
-
 
       if (target === "#history") {
          WorkoutLog.log.setHistory();
@@ -60,6 +59,32 @@ var WorkoutLog = (function($, undefined) {
          }
       }
    });
+
+  //  bind tab change events
+  // bootstrap tab --> binding to a bootstrap event
+  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+     var target = $(e.target).attr("href"); // activated tab
+     if (target === "#log") {
+        WorkoutLog.log.setDefinitions();
+     }
+
+     if (target === "#history") {
+        WorkoutLog.log.setHistory();
+     }
+  });
+
+  // bind enter key
+   $(document).on("keypress", function(e) {
+      if (e.which === 13) { // enter key
+         if ($("#signup-modal").is(":visible")) {
+            $("#signup").trigger("click");
+         }
+         if ($("#login-modal").is(":visible")) {
+            $("#login").trigger("click");
+         }
+      }
+   });
+
    // setHeader if we
    var token = window.localStorage.getItem("sessionToken");
    if (token) {
@@ -211,3 +236,5 @@ var WorkoutLog = (function($, undefined) {
 
    // // expose this to the other workoutlog modules
    // window.WorkoutLog = WorkoutLog;
+
+

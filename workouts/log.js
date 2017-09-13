@@ -10,13 +10,8 @@ $(function() {
 				for (var i = 0; i < len; i++) {
 					opts += "<option value='" + defs[i].id +"'>" + defs[i].description + "</option>";
 				}
-
-
-
 				$("#log-definition").children().remove();
-				$("#log-definition").append(opts)
-				$("#update-definition").children().remove();
-				$("#update-definition").append(opts)
+				$("#log-definition").append(opts);
 			},
 
 			setHistory: function() {
@@ -59,8 +54,7 @@ $(function() {
 		      	});
 			},
 
-
-			getWorkout: function(){
+			getWorkout: function() {
 				var thisLog = {id: $(this).attr("id")};
 				console.log(thisLog);
 				logID = thisLog.id;
@@ -71,51 +65,52 @@ $(function() {
 					data: JSON.stringify(updateData),
 					contentType: "application/json"
 				});
-			
-			getLog.done(function(data){
-				$('a[href="#update-log"]').tab("show");
-				$('#update-result').val(data.result);
-				$('#update-description').val(data.description);
-				$('#update-id').val(data.id)
+				getLog.done(function(data){
+					
+				    $('a[href="#update-log"]').tab("show");
+					$('#update-result').val(data.result);
+					$('#update-description').val(data.description);
+					$('#update-id').val(data.id);
 				});
+
 			},
 
-			updateWorkout: function(){
+			updateWorkout: function() {
 				$("#update").text("Update");
-				var updateLog = {
+				var updateLog = { 
 					id: $('#update-id').val(),
 					desc: $("#update-description").val(),
-					result: $("#update-result").val(),
-					def: $("#update-definition option:selected").text()
+						result: $("#update-result").val(),
+						def: $("#update-definition option:selected").text()
 				};
 				for(var i = 0; i < WorkoutLog.log.workouts.length; i++){
 					if(WorkoutLog.log.workouts[i].id == updateLog.id){
 						WorkoutLog.log.workouts.splice(i, 1);
 					}
 				}
-			WorkoutLog.log.workouts.push(updateLog);
-			var updateLogData = { log: updateLog };
-			var updater = $.ajax({
-				type: "PUT",
-				url: WorkoutLog.API_BASE + "log",
-				data: JSON.stringify(updateLogData),
-				contentType: "application/json"
-			});
-
-			updater.done(function(data){
-				console.log(data);
-				$("#update-description").val("");
-				$("#update-result").val("");
-				$('a[href="#history"]').tab("show");
+				WorkoutLog.log.workouts.push(updateLog);
+				var updateLogData = { log: updateLog };
+				var updater = $.ajax({
+						type: "PUT",
+						url: WorkoutLog.API_BASE + "log",
+						data: JSON.stringify(updateLogData),
+						contentType: "application/json"
 				});
-			},
 
+				updater.done(function(data) {
+					console.log(data);
+					$("#update-description").val("");
+					$("#update-result").val("");
+					$('a[href="#history"]').tab("show");
+				});
+
+			},
 
 
 			delete: function(){
 				var thisLog = {
 					// "this" is the button on the li
-				//.attr("id") targets the value of the id attribute of button
+			//.attr("id") targets the value of the id attribute of button
 					id: $(this).attr("id")
 				};
 				var deleteData = { log: thisLog };
@@ -139,7 +134,7 @@ $(function() {
 				deleteLog.fail(function(){
 					console.log("nope. you didn't delete it.");
 				});
-				},
+			},
 
 			// history
 			fetchAll: function() {
@@ -164,6 +159,8 @@ $(function() {
 	$("#history-list").delegate('.remove', 'click', WorkoutLog.log.delete);
 	$("#log-update").on("click", WorkoutLog.log.updateWorkout);
 	$("#history-list").delegate('.update', 'click', WorkoutLog.log.getWorkout);
+
+
 	   // fetch history if we already are authenticated and refreshed
    if (window.localStorage.getItem("sessionToken")) {
       WorkoutLog.log.fetchAll();

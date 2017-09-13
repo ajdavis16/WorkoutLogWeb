@@ -3,7 +3,7 @@ $(function() {
 		definition: {
 			userDefinitions: [],
 
-		create: function() {
+			create: function() {
 
 				var def = { 
 		         		desc: $("#def-description").val(),
@@ -18,11 +18,12 @@ $(function() {
 	         	contentType: "application/json"
 		      	});
 
-		    define.done(function(data) {
+		      	define.done(function(data) {
 	      			WorkoutLog.definition.userDefinitions.push(data.definition);
-	      			$("#def-description").val("");
-	      			$("#def-logtype").val("");
-	      			$('a[href="#log"]').tab("show");
+		      		$("#def-description").val("");
+					$("#def-logtype").val("");
+					$('a[href="#log"]').tab("show");
+
 		      	});
 		  },
 
